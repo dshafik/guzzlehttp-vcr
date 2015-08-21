@@ -16,7 +16,7 @@ $ composer require dshafik/guzzlehttp-vcr
 
 ## Usage
 
-It's use is _similar_ to Guzzles `\GuzzleHttp\Handler\MockHandler`, and in fact uses the `MockHandler` to replay the recorded requests. Calling the `Dshafik\GuzzleHttp\VcrHandler::turnOn()` method will return either an instance of the standard `GuzzleHttp\HandlerStack` with the `VcrHandler` added as middleware, _or_ an instance of `MockHandler` with the recorded requests loaded up and ready to go.
+It's use is _similar_ to Guzzles `\GuzzleHttp\Handler\MockHandler`, and in fact uses the `MockHandler` to replay the recorded requests. Calling the `Dshafik\GuzzleHttp\VcrHandler::turnOn()` method will return either an instance of the standard `GuzzleHttp\HandlerStack` with either the `VcrHandler` or `MockHandler` (with the requests loaded) added as middleware.
 
 You then pass the handler in as the `GuzzleHttp\Client` handler option, either in the constructor, or with the individual request.
  
