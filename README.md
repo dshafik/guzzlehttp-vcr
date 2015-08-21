@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/dshafik/guzzlehttp-vcr)[![Travis CI Status](https://travis-ci.org/dshafik/guzzlehttp-vcr.svg?branch=master)](https://travis-ci.org/dshafik/guzzlehttp-vcr) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dshafik/guzzlehttp-vcr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dshafik/guzzlehttp-vcr/?branch=master)
+
 # Guzzle VCR
 
 Based on the idea of [PHP•VCR](http://php-vcr.github.io), this Guzzle Middleware will record responses and replay them in response to subsequent requests.
