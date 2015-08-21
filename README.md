@@ -37,6 +37,8 @@ class ApiClientTest {
 
 In this example, if the fixture exists, it will be used — using `MockHandler` — in response to _any_ requests made until it runs out of possible responses. Once it runs out of responses it will throw an `\OutOfBoundsException` exception on the next request.
 
+To update the fixture, just delete the file and re-run the test.
+
 ## Fixtures
 
 Fixtures are simple JSON files that you can edit or create by hand:
@@ -68,7 +70,7 @@ Fixtures are simple JSON files that you can edit or create by hand:
 
 The only difference between the recording and the original response is the addition of an `X-VCR-Recording` header that contains the UNIX timestamp of the time it was recorded.
 
-## Testing
+## Running the Tests
 
 The unit tests for this library use Guzzles built-in Node.js server, this means that you _must_ install with the `--prefer-source` flag, otherwise test sources are not included.
  
