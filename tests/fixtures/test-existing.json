@@ -1,0 +1,22 @@
+[
+    {
+        "status": 200,
+        "headers": {
+            "Date": [
+                "Fri, 21 Aug 2015 01:44:31 GMT"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "X-VCR-Recording": [
+                "1440121471"
+            ]
+        },
+        "body": "Hello World",
+        "version": "1.1",
+        "reason": "OK"
+    }
+]
