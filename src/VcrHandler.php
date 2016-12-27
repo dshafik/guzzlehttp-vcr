@@ -27,7 +27,7 @@ class VcrHandler
             $handler->after('allow_redirects', new static($cassette));
             return $handler;
         } else {
-            $responses = json_decode(file_get_contents($cassette), true);
+            $responses = json_decode(utf8_decode(file_get_contents($cassette)), true);
 
             $queue = [];
             $class = new \ReflectionClass(\GuzzleHttp\Psr7\Response::class);
@@ -68,7 +68,7 @@ class VcrHandler
                     $responses[] = [
                         'status' =>  $cassette->getStatusCode(),
                         'headers' => $cassette->getHeaders(),
-                        'body' => (string) $cassette->getBody(),
+                        'body' => utf8_encode((string)$cassette->getBody()),
                         'version' => $cassette->getProtocolVersion(),
                         'reason' => $cassette->getReasonPhrase()
                     ];
