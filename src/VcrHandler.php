@@ -24,7 +24,7 @@ class VcrHandler
     {
         if (!file_exists($cassette)) {
             $handler = \GuzzleHttp\HandlerStack::create();
-            $handler->push(new static($cassette), 'vcr_recorder');
+            $handler->after('allow_redirects', new static($cassette), 'vcr_recorder');
             return $handler;
         } else {
             $responses = json_decode(file_get_contents($cassette), true);
