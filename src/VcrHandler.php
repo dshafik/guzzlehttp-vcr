@@ -27,7 +27,7 @@ class VcrHandler
             $handler->after('allow_redirects', new static($cassette), 'vcr_recorder');
             return $handler;
         } else {
-            $responses = json_decode(file_get_contents($cassette), true);
+            $responses = self::decodeResponses($cassette);
 
             $queue = [];
             $class = new \ReflectionClass(\GuzzleHttp\Psr7\Response::class);
@@ -50,6 +50,23 @@ class VcrHandler
     }
 
     /**
+     * Decodes every responses body from base64
+     *
+     * @param $cassette
+     * @return array
+     */
+    protected static function decodeResponses($cassette)
+    {
+        $responses = json_decode(file_get_contents($cassette), true);
+
+        array_walk($responses, function(&$response){
+            $response['body'] = base64_decode($response['body']);
+        });
+
+        return $responses;
+    }
+
+    /**
      * Handle the request/response
      *
      * @param callable $handler
@@ -62,13 +79,14 @@ class VcrHandler
                 function (\Psr\Http\Message\ResponseInterface $response) use ($request) {
                     $responses = [];
                     if (file_exists($this->cassette)) {
+                        //No need to base64 decode body of response here.
                         $responses = json_decode(file_get_contents($this->cassette), true);
                     }
                     $cassette = $response->withAddedHeader('X-VCR-Recording', time());
                     $responses[] = [
                         'status' =>  $cassette->getStatusCode(),
                         'headers' => $cassette->getHeaders(),
-                        'body' => (string) $cassette->getBody(),
+                        'body' => base64_encode((string) $cassette->getBody()),
                         'version' => $cassette->getProtocolVersion(),
                         'reason' => $cassette->getReasonPhrase()
                     ];
